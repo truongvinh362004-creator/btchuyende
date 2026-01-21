@@ -1,34 +1,52 @@
 @extends('layouts.app')
 
-@section('title', 'Dự Án Của Tôi')
+@section('title', 'Dự Án')
 
 @section('content')
     <div class="text-center mb-5">
-        <h2 class="fw-bold">🌟 Các Dự Án Đã Hoàn Thành</h2>
-        <p class="text-muted">Danh sách các sản phẩm tâm huyết tôi đã thực hiện.</p>
+        <h2 class="fw-bold display-5">DỰ ÁN TIÊU BIỂU</h2>
+        <div style="width: 60px; height: 4px; background: #0d6efd; margin: 10px auto; border-radius: 2px;"></div>
+        <p class="text-muted">Các sản phẩm thực tế đã hoàn thiện</p>
     </div>
 
-    @if(isset($projects) && count($projects) > 0)
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            @foreach($projects as $index => $project)
-                <div class="col">
-                    <div class="card h-100 border-0 shadow-sm hover-card">
-                        <img src="https://placehold.co/600x400/3490dc/ffffff?text=Project+{{ $index + 1 }}" class="card-img-top" alt="...">
+    <?php if (isset($projects) && count($projects) > 0): ?>
 
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold text-primary">{{ $project['title'] }}</h5>
-                            <p class="card-text text-secondary">{{ $project['description'] }}</p>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            <?php foreach ($projects as $index => $project): ?>
+
+                <div class="col">
+                    <div class="card h-100 border-0 soft-shadow rounded-4 overflow-hidden position-relative group-hover">
+                        <div class="card-img-top d-flex align-items-center justify-content-center text-white"
+                             style="height: 180px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                             <i class="bi bi-laptop display-1 opacity-25"></i>
+                             <h2 class="position-absolute fw-bold">#<?php echo $index + 1; ?></h2>
                         </div>
-                        <div class="card-footer bg-white border-0 pb-3">
-                            <a href="#" class="btn btn-sm btn-outline-primary w-100">Chi tiết <i class="bi bi-arrow-right"></i></a>
+
+                        <div class="card-body p-4">
+                            <h4 class="card-title fw-bold text-dark mb-3">
+                                <?php echo $project['title']; ?>
+                            </h4>
+                            <p class="card-text text-secondary">
+                                <?php echo $project['description']; ?>
+                            </p>
+                        </div>
+
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-outline-primary w-100 rounded-pill py-2 fw-bold">
+                                CHI TIẾT <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-            @endforeach
+
+            <?php endforeach; ?>
+
         </div>
-    @else
-        <div class="alert alert-warning text-center">
-            <i class="bi bi-exclamation-triangle"></i> Chưa có dự án nào được cập nhật.
+
+    <?php else: ?>
+        <div class="alert alert-warning text-center p-5 rounded-4 soft-shadow">
+            <h3>📭 Chưa có dự án nào</h3>
         </div>
-    @endif
+    <?php endif; ?>
 @endsection
